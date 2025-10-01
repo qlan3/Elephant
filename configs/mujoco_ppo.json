@@ -1,0 +1,57 @@
+{
+    "task": [{"name": ["HalfCheetah-v4", "Hopper-v4", "Walker2d-v4", "Ant-v4", "Reacher-v4", "Swimmer-v4"]}],
+    "agent": [{
+        "name": ["PPO"],
+        "model_name": ["PPONet"],
+        "model_cfg": [
+            {
+                "hidden_dims": [[1000]],
+                "hidden_act": ["Tanh"]
+            },
+            {
+                "hidden_dims": [[1000]],
+                "hidden_act": ["Elephant"],
+                "d": [4],
+                "h": [1],
+                "sigma": [0.8],
+                "bias_std": [1.0]
+            },
+            {
+                "hidden_dims": [[150]],
+                "hidden_act": ["FTA"],
+                "fta_k": [20],
+                "fta_bound": [20.0]
+            },
+            {
+                "hidden_dims": [[1000]],
+                "hidden_act": ["Maxout"],
+                "maxout_k": [5]
+            },
+            {
+                "hidden_dims": [[1000]],
+                "hidden_act": ["LWTA"],
+                "lwta_k": [5]
+            }
+        ],
+        "collect_steps": [2048],
+        "gae_lambda": [0.95],
+        "update_epochs": [10],
+        "clip_ratio": [0.2],
+        "vf_coef": [0.5],
+        "ent_coef": [0.0]
+    }],
+    "train_steps": [1e6],
+    "optim": [{
+        "name": ["Adam"],
+        "kwargs": [{"learning_rate": [1e-4], "max_grad_norm": [0.5], "anneal_lr": [true]}]
+    }],
+    "batch_size": [64],
+    "display_interval": [1],
+    "ckpt_interval": [5],
+    "test_interval": [-1],
+    "test_episodes": [5],
+    "discount": [0.99],
+    "seed": [1],
+    "device": ["cuda"],
+    "generate_random_seed": [true]
+}

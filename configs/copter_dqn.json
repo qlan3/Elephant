@@ -1,0 +1,64 @@
+{
+    "task": [{
+        "name": ["Pixelcopter-PLE-v0"],
+        "kwargs": [{"max_episode_steps": [500]}]
+    }],
+    "agent": [{
+        "name": ["DQN"],
+        "model_name": ["DQNNet"],
+        "model_cfg": [
+            {
+                "hidden_dims": [[1400]],
+                "hidden_act": ["ReLU"]
+            },
+            {
+                "hidden_dims": [[1000]],
+                "hidden_act": ["Elephant"],
+                "d": [4],
+                "h": [1],
+                "sigma": [0.2],
+                "bias_std": [0.4]
+            },
+            {
+                "hidden_dims": [[300]],
+                "hidden_act": ["FTA"],
+                "fta_k": [20],
+                "fta_bound": [20.0]
+            },
+            {
+                "hidden_dims": [[1700]],
+                "hidden_act": ["Maxout"],
+                "maxout_k": [5]
+            },
+            {
+                "hidden_dims": [[1400]],
+                "hidden_act": ["LWTA"],
+                "lwta_k": [5]
+            }
+        ],
+        "exploration_steps": [1e3],
+        "update_freq": [1],
+        "target_update_freq": [200],
+        "eps_steps": [1e3],
+        "eps_start": [1.0],
+        "eps_end": [0.01]
+    }],
+    "train_steps": [1e6],
+    "buffer_size": [32, 1e2, 3e2, 1e3, 3e3, 1e4],
+    "optim": [{
+        "name": ["RMSProp"],
+        "kwargs": [{
+            "learning_rate": [1e-2, 3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5, 3e-6],
+            "decay": [0.999]
+        }]
+    }],
+    "batch_size": [32],
+    "display_interval": [5e3],
+    "ckpt_interval": [5e3],
+    "test_interval": [-1],
+    "test_episodes": [5],
+    "discount": [0.99],
+    "seed": [1],
+    "device": ["cpu"],
+    "generate_random_seed": [true]
+}

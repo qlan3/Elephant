@@ -1,0 +1,39 @@
+{
+    "task": [{"name": ["StreamSin"]}],
+    "agent": [
+        {
+            "name": ["StreamRegression"],
+            "model_name": ["MLP"],
+            "model_cfg": [{
+                "hidden_dims": [[1000]],
+                "output_dim": [1],
+                "hidden_act": ["Elephant"],
+                "d": [8],
+                "h": [1],
+                "sigma": [0.08],
+                "bias_std": [1.28]
+            }]
+        },
+        {
+            "name": ["StreamRegression"],
+            "model_name": ["MLP"],
+            "model_cfg": [{
+                "hidden_dims": [[1000]],
+                "output_dim": [1],
+                "hidden_act": ["ReLU", "Sigmoid", "Tanh", "ELU"]
+            }],
+            "srnn_lambda": [0, 0.1, 0.01, 0.001],
+            "srnn_beta": [0.05, 0.1, 0.2]
+        }
+    ],
+    "optim": [{
+        "name": ["Adam"],
+        "kwargs": [{"learning_rate": [3e-3, 1e-3, 3e-4, 1e-4, 3e-5, 1e-5]}]
+    }],
+    "batch_size": [1],
+    "epochs": [10],
+    "display_interval": [50],
+    "seed": [42],
+    "device": ["cpu"],
+    "generate_random_seed": [true]
+}

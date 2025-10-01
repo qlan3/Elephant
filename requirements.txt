@@ -1,0 +1,23 @@
+# Jax
+flax>=0.8.0
+distrax>=0.1.2
+gymnasium==0.29.1
+jax==0.4.23
+optax>=0.2.1
+# PyTorch
+envpool==0.7.0
+tianshou==0.4.10
+torch==2.0.1
+gym==0.25.1
+ale_py
+# Common
+scipy
+tensorboard
+tqdm
+matplotlib
+numpy
+pandas
+psutil
+seaborn
+tabulate
+gpustat

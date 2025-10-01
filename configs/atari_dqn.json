@@ -1,0 +1,64 @@
+{
+    "task": [{
+        "name": ["AmidarNoFrameskip-v4", "BattleZoneNoFrameskip-v4", "BowlingNoFrameskip-v4", "DoubleDunkNoFrameskip-v4", "FrostbiteNoFrameskip-v4", "KungFuMasterNoFrameskip-v4", "NameThisGameNoFrameskip-v4", "PhoenixNoFrameskip-v4", "QbertNoFrameskip-v4", "RiverraidNoFrameskip-v4"],
+        "scale_obs": [0],
+        "train_num": [1],
+        "test_num": [5]
+    }],
+    "agent": [{
+        "name": ["AtariDQN"],
+        "model_name": ["AtariDQNNet"],
+        "model_cfg": [
+            {
+                "hidden_act": ["ReLU", "Tanh"],
+                "last_hidden_dim": [512]
+            },
+            {
+                "hidden_act": ["Elephant"],
+                "last_hidden_dim": [512],
+                "d": [4],
+                "h": [1],
+                "sigma": [0.1],
+                "bias_std": [2]
+            },
+            {
+                "hidden_act": ["FTA"],
+                "fta_k": [20],
+                "fta_bound": [20.0],
+                "last_hidden_dim": [10000]
+            },
+            {
+                "hidden_act": ["Maxout"],
+                "maxout_k": [4],
+                "last_hidden_dim": [128]
+            },
+            {
+                "hidden_act": ["LWTA"],
+                "lwta_k": [4],
+                "last_hidden_dim": [512]
+            }
+        ],
+        "eps_steps": [1e6],
+        "eps_start": [1.0],
+        "eps_end": [0.05],
+        "eps_test": [0.0]
+    }],
+    "save_model": [false],
+    "show_progress": [false],
+    "resume_from_log": [true],
+    "save_interval": [5],
+    "epoch": [125],
+    "n_step": [3],
+    "step_per_epoch": [1e5],
+    "step_per_collect": [10],
+    "update_per_step": [0.1],
+    "batch_size": [32],
+    "target_update_steps": [500],
+    "buffer_size": [1e6],
+    "frames_stack": [4],
+    "optim": [{"name": ["Adam"], "kwargs": [{"lr": [1e-4]}]}],
+    "discount": [0.99],
+    "seed": [1],
+    "device": ["cuda"],
+    "generate_random_seed": [true]
+}

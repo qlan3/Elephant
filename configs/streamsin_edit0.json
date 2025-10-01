@@ -1,0 +1,33 @@
+{
+    "task": [{"name": ["Sin"]}],
+    "agent": [{
+        "name": ["Regression"],
+        "model_name": ["MLP"],
+        "model_cfg": [
+            {
+                "hidden_dims": [[1000]],
+                "output_dim": [1],
+                "hidden_act": ["ReLU"]
+            },
+            {
+                "hidden_dims": [[1000]],
+                "output_dim": [1],
+                "hidden_act": ["Elephant"],
+                "d": [8],
+                "h": [1],
+                "sigma": [0.08],
+                "bias_std": [1.28]
+            }
+        ]
+    }],
+    "optim": [{
+        "name": ["Adam"],
+        "kwargs": [{"learning_rate": [3e-3]}]
+    }],
+    "batch_size": [20],
+    "epochs": [250],
+    "display_interval": [50],
+    "seed": [1],
+    "device": ["cpu"],
+    "generate_random_seed": [false]
+}

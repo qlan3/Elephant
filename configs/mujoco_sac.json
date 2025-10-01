@@ -1,0 +1,55 @@
+{
+    "task": [{"name": ["HalfCheetah-v4", "Hopper-v4", "Walker2d-v4", "Ant-v4", "Reacher-v4", "Swimmer-v4"]}],
+    "agent": [{
+        "name": ["SAC"],
+        "model_name": ["SACNet"],
+        "model_cfg": [
+            {
+                "hidden_dims": [[256,256]],
+                "hidden_act": ["ReLU"]
+            },
+            {
+                "hidden_dims": [[256,256]],
+                "hidden_act": ["Elephant"],
+                "d": [4],
+                "h": [1],
+                "sigma": [1.0],
+                "bias_std": [2.0]
+            },
+                {
+                "hidden_dims": [[256,220]],
+                "hidden_act": ["FTA"],
+                "fta_k": [20],
+                "fta_bound": [20.0]
+            },
+            {
+                "hidden_dims": [[256,1024]],
+                "hidden_act": ["Maxout"],
+                "maxout_k": [4]
+            },
+            {
+                "hidden_dims": [[256,256]],
+                "hidden_act": ["LWTA"],
+                "lwta_k": [4]
+            }
+        ],
+        "exploration_steps": [1e4],
+        "update_freq": [1],
+        "tau": [0.005]
+    }],
+    "train_steps": [1e6],
+    "buffer_size": [1e4, 1e5, 1e6],
+    "optim": [{
+        "name": ["Adam"],
+        "kwargs": [{"learning_rate": [1e-3]}]
+    }],
+    "batch_size": [256],
+    "display_interval": [1e4],
+    "ckpt_interval": [1e5],
+    "test_interval": [-1],
+    "test_episodes": [5],
+    "discount": [0.99],
+    "seed": [1],
+    "device": ["cuda"],
+    "generate_random_seed": [true]
+}

@@ -1,0 +1,22 @@
+{
+    "task": [{"name": ["EditSin"]}],
+    "agent": [{
+        "name": ["LocalEdit"],
+        "model_name": ["MLP"],
+        "model_cfg": [{
+            "hidden_dims": [[1000]],
+            "output_dim": [1],
+            "hidden_act": ["ReLU"]
+        }],
+        "old_param_path": ["./logs/streamsin_edit0/1/model.pickle"]
+    }],
+    "optim": [{
+        "name": ["SGD"],
+        "kwargs": [{"learning_rate": [1e-3]}]
+    }],
+    "batch_size": [1],
+    "epochs": [10],
+    "seed": [1],
+    "device": ["cpu"],
+    "generate_random_seed": [false]
+}
